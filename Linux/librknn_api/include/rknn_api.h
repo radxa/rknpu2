@@ -98,6 +98,9 @@ typedef enum _rknn_query_cmd {
     RKNN_QUERY_MEM_SIZE,                                /* query the weight & internal memory size */
     RKNN_QUERY_CUSTOM_STRING,                           /* query the custom string */
 
+    RKNN_QUERY_NATIVE_INPUT_ATTR,                       /* query the attribute of native input tensor. */
+    RKNN_QUERY_NATIVE_OUTPUT_ATTR,                      /* query the attribute of native output tensor. */
+
     RKNN_QUERY_CMD_MAX
 } rknn_query_cmd;
 
@@ -161,6 +164,7 @@ inline const char* get_qnt_type_string(rknn_tensor_qnt_type type)
 typedef enum _rknn_tensor_format {
     RKNN_TENSOR_NCHW = 0,                               /* data format is NCHW. */
     RKNN_TENSOR_NHWC,                                   /* data format is NHWC. */
+    RKNN_TENSOR_NC1HWC2,                                /* data format is NC1HWC2. */
 
     RKNN_TENSOR_FORMAT_MAX
 } rknn_tensor_format;
@@ -170,6 +174,7 @@ inline const char* get_format_string(rknn_tensor_format fmt)
     switch(fmt) {
     case RKNN_TENSOR_NCHW: return "NCHW";
     case RKNN_TENSOR_NHWC: return "NHWC";
+    case RKNN_TENSOR_NC1HWC2: return "NC1HWC2";
     default: return "UNKNOW";
     }
 }
@@ -251,6 +256,15 @@ typedef struct _rknn_mem_size {
 typedef struct _rknn_custom_string {
     char string[1024];                                  /* the string of custom, lengths max to 1024 bytes */
 } rknn_custom_string;
+
+/*
+   The flags of rknn_tensor_mem.
+*/
+typedef enum _rknn_tensor_mem_flags {
+    RKNN_TENSOR_MEMORY_FLAGS_ALLOC_INSIDE = 1,           /*Used to mark in rknn_destory_mem() whether it is necessary to release the "mem" pointer itself.
+                                                         If the flag RKNN_TENSOR_MEMORY_FLAGS_ALLOC_INSIDE is set, rknn_destory_mem() will call free(mem).*/
+    RKNN_TENSOR_MEMORY_FLAGS_UNKNOWN
+} rknn_tensor_mem_flags;
 
 /*
     the memory information of tensor.

@@ -72,7 +72,7 @@ add_executable(rknn_create_mem_demo
 )
 
 target_link_libraries(rknn_create_mem_demo
-	${RKNN_API_LIB}
+	${RKNN_RT_LIB}
 	${OpenCV_LIBS}
 )
 
@@ -86,7 +86,7 @@ add_executable(rknn_create_mem_with_rga_demo
 )
 
 target_link_libraries(rknn_create_mem_with_rga_demo
-	${RKNN_API_LIB}
+	${RKNN_RT_LIB}
 	${RGA_LIB}
 )
 
@@ -104,7 +104,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Android")
   )
 
   target_link_libraries(rknn_with_mmz_demo
-    ${RKNN_API_LIB}
+    ${RKNN_RT_LIB}
     ${MPI_MMZ_LIB}
   )
 
@@ -118,7 +118,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Android")
   )
 
   target_link_libraries(rknn_set_internal_mem_from_fd_demo
-  ${RKNN_API_LIB}
+  ${RKNN_RT_LIB}
   ${MPI_MMZ_LIB}
   )
 
@@ -132,7 +132,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Android")
   )
 
   target_link_libraries(rknn_set_internal_mem_from_phy_demo
-    ${RKNN_API_LIB}
+    ${RKNN_RT_LIB}
     ${MPI_MMZ_LIB}
   )
 
@@ -142,5 +142,6 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Android")
 
 endif()
 
+install(DIRECTORY model DESTINATION ./)
 install(PROGRAMS ${RKNN_API_LIB} DESTINATION lib)
 install(PROGRAMS ${RKNN_RT_LIB} DESTINATION lib)

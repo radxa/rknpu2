@@ -6,8 +6,22 @@
   - RK3568
   
 Note: The content of this project is not applicable to RK1808/RV1109/RV1126/RK3399Pro.
+      The rknn model must be generated using RKNN Toolkit 2 instead of RKNN Toolkit.
 
 ## ReleaseLog
+
+### 1.1.0
+   - Support INT8+FP16 mixed quantization to improve model accuracy
+   - Support specifying input and output dtype, which can be solidified into the model
+   - Support multiple inputs of the model with different channel mean/std
+   - Improve the stability of multi-thread + multi-process runtime
+   - Support flashing cache for fd pointed to internal tensor memory which are allocated by users
+   - Improve dumping internal layer results of the model
+   - Add rknn_server application as proxy between PC and board
+   - Support more operators, such as HardSigmoid、HardSwish、Gather、ReduceMax、Elu
+   - Added LSTM support (structure cifg and peephole are not supported, function: layernormal, clip is not supported)
+   - Bug fix
+
 
 ### 1.0
    - Optimize the performance of rknn_inputs_set()

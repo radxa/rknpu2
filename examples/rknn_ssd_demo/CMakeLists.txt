@@ -41,7 +41,7 @@ add_executable(rknn_ssd_demo
         )
 
 target_link_libraries(rknn_ssd_demo
-	${RKNN_API_LIB}
+	${RKNN_RT_LIB}
 	${OpenCV_LIBS}
 )
 

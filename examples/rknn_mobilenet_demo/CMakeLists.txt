@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(RKNN_API_PATH ${CMAKE_SOURCE_DIR}/../../${CMAKE_SYSTEM_NAME}/librknn_api)
 if (CMAKE_SYSTEM_NAME STREQUAL "Android")
-  set(RKNN_API_LIB ${RKNN_API_PATH}/${CMAKE_ANDROID_ARCH_ABI}/librknn_api.so)
+  set(RKNN_API_LIB ${RKNN_API_PATH}/${CMAKE_ANDROID_ARCH_ABI}/librknn_api_android.so)
   set(RKNN_RT_LIB ${RKNN_API_PATH}/${CMAKE_ANDROID_ARCH_ABI}/librknnrt.so)
 else()
   if (CMAKE_C_COMPILER MATCHES "aarch64")
@@ -15,7 +15,7 @@ else()
   else()
     set(LIB_ARCH armhf)
   endif()
-  set(RKNN_API_LIB ${RKNN_API_PATH}/${LIB_ARCH}/librknn_api.so)
+  set(RKNN_API_LIB ${RKNN_API_PATH}/${LIB_ARCH}/librknn_api_android.so)
   set(RKNN_RT_LIB ${RKNN_API_PATH}/${LIB_ARCH}/librknnrt.so)
 endif()
 include_directories(${RKNN_API_PATH}/include)
@@ -38,7 +38,7 @@ add_executable(rknn_mobilenet_demo
         src/main.cc
 )
 
-target_link_libraries(rknn_mobilenet_demo
+target_link_libraries(rknn_mobilenet_demo "-Wl,--allow-shlib-undefined"
 	${RKNN_API_LIB}
 	${OpenCV_LIBS}
 )

@@ -2,7 +2,7 @@
 
 set -e
 
-ANDROID_NDK_PATH=~/opts/ndk/android-ndk-r16b
+ANDROID_NDK_PATH=/opt/tools/rk/android-ndk-r17/
 
 BUILD_TYPE=Debug
 #BUILD_TYPE=Release
