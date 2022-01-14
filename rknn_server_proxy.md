@@ -7,6 +7,7 @@ librknnrt.so: 是一个板端的runtime库。
 
 
 ## rknn_server存放目录
+RK356X和RK3588上的rknn_server分别对应存放在runtime/RK356X/和runtime/RK3588/目录下，以RK356X为例，rknn_server的存放目录层次如下：
 ### Android平台
 ```
 Android
@@ -40,9 +41,12 @@ Linux
 ```
 
 ## 启动步骤
+以RK356X为例，进入到runtime/RK356X/目录，根据不同平台，选择以下不同的启动步骤：
+
 ### Android平台
+BOARD_ARCH在64位安卓系统中，对应arm64-v8a目录，在32位系统，对应armeabi-v7a目录
 1. adb root && adb remount
-2. adb push Android/rknn_server/${BOARD_ARCH}/rknn_server到板子/vendor/bin/目录
+2. adb push Android/rknn_server/${BOARD_ARCH}/vendor/bin/rknn_server到板子/vendor/bin/目录
 3. adb push Android/librknn_api/${BOARD_ARCH}/librknnrt.so到/vendor/lib64（64位系统特有）和/vendor/lib目录
 4. 进入板子的串口终端，执行：
 ```
@@ -56,9 +60,10 @@ reboot
 su
 setenforce 0
 /vendor/bin/rknn_server &
-```   
+```
 
 ### Linux平台
+BOARD_ARCH在64位Linux系统中，对应aarch64目录，在32位系统，对应armhf目录
 1. adb push Linux/rknn_server/${BOARD_ARCH}/usr/bin/下的所有文件到/usr/bin目录
 2. adb push Linux/librknn_api/${BOARD_ARCH}/librknnrt.so到/usr/lib目录
 3. 进入板子的串口终端，执行：

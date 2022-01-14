@@ -1,3 +1,4 @@
+下述<TARGET_PLATFORM>是RK356X或RK3588
 # Aarch64 Linux Demo
 ## build
 
@@ -22,10 +23,10 @@ adb shell
 cd /userdata/rknn_multiple_input_demo_Linux/
 ```
 
-- rk3566/rk3568
+- rk3566/rk3568/rk3588
 ```
 export LD_LIBRARY_PATH=./lib
-./rknn_multiple_input_demo model/multiple_input_demo.rknn model/input.png#model/input1.png
+./rknn_multiple_input_demo model/<TARGET_PLATFORM>/multiple_input_demo.rknn model/input1.bin#model/input2.bin
 ```
 
 # Android Demo
@@ -52,8 +53,8 @@ adb shell
 cd /data/rknn_multiple_input_demo_Android/
 ```
 
-- rk3566/rk3568
+- rk3566/rk3568/rk3588
 ```
 export LD_LIBRARY_PATH=./lib
-./rknn_multiple_input_demo model/multiple_input_demo.rknn model/input.png#model/input1.png
+./rknn_multiple_input_demo model/<TARGET_PLATFORM>/multiple_input_demo.rknn model/input1.bin#model/input2.bin
 ```

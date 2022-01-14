@@ -1,10 +1,13 @@
+下述<TARGET_PLATFORM>是RK356X或RK3588
 # Aarch64 Linux Demo
 ## build
 
-modify `GCC_COMPILER` on `build-linux.sh` for target platform, then execute
+modify `GCC_COMPILER` on `build-linux_<TARGET_PLATFORM>.sh` for target platform,
+
+then execute
 
 ```
-./build-linux.sh
+./build-linux_<TARGET_PLATFORM>.sh
 ```
 
 ## install
@@ -12,29 +15,28 @@ modify `GCC_COMPILER` on `build-linux.sh` for target platform, then execute
 connect device and push build output into `/userdata`
 
 ```
-adb push install/rknn_mobilenet_demo_Linux /userdata/
+adb push install/rknn_common_test_Linux /userdata/
 ```
 
 ## run
 
 ```
 adb shell
-cd /userdata/rknn_mobilenet_demo_Linux/
+cd /userdata/rknn_common_test_Linux/
 ```
 
-- rk3566/rk3568
 ```
 export LD_LIBRARY_PATH=./lib
-./rknn_mobilenet_demo model/mobilenet_v1.rknn model/dog_224x224.jpg
+./rknn_common_test model/<TARGET_PLATFORM>/mobilenet_v1.rknn model/dog_224x224.jpg
 ```
 
 # Android Demo
 ## build
 
-modify `ANDROID_NDK_PATH` on `build-android.sh` for target platform, then execute
+modify `ANDROID_NDK_PATH` on `build-android_<TARGET_PLATFORM>.sh` for target platform, then execute
 
 ```
-./build-android.sh
+./build-android_<TARGET_PLATFORM>.sh
 ```
 
 ## install
@@ -42,18 +44,17 @@ modify `ANDROID_NDK_PATH` on `build-android.sh` for target platform, then execut
 connect device and push build output into `/data`
 
 ```
-adb push install/rknn_mobilenet_demo_Android /data/
+adb push install/rknn_common_test_Android /data/
 ```
 
 ## run
 
 ```
 adb shell
-cd /data/rknn_mobilenet_demo_Android/
+cd /data/rknn_common_test_Android/
 ```
 
-- rk3566/rk3568
 ```
 export LD_LIBRARY_PATH=./lib
-./rknn_mobilenet_demo model/mobilenet_v1.rknn model/dog_224x224.jpg
+./rknn_common_test model/<TARGET_PLATFORM>/mobilenet_v1.rknn model/dog_224x224.jpg
 ```
