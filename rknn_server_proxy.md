@@ -12,11 +12,11 @@ RK356X和RK3588上的rknn_server分别对应存放在runtime/RK356X/和runtime/R
 ```
 Android
 └── rknn_server
-    ├── arm64-v8a
+    ├── arm64
     │   └── vendor
     │       └── bin
     │           └── rknn_server
-    └── armeabi-v7a
+    └── arm
         └── vendor
             └── bin
                 └── rknn_server
@@ -44,7 +44,7 @@ Linux
 以RK356X为例，进入到runtime/RK356X/目录，根据不同平台，选择以下不同的启动步骤：
 
 ### Android平台
-BOARD_ARCH在64位安卓系统中，对应arm64-v8a目录，在32位系统，对应armeabi-v7a目录
+BOARD_ARCH在64位安卓系统中，对应arm64目录，在32位系统，对应arm目录
 1. adb root && adb remount
 2. adb push Android/rknn_server/${BOARD_ARCH}/vendor/bin/rknn_server到板子/vendor/bin/目录
 3. adb push Android/librknn_api/${BOARD_ARCH}/librknnrt.so到/vendor/lib64（64位系统特有）和/vendor/lib目录
